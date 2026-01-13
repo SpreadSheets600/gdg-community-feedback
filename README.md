@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GDG Community Wall 🎨
 
-## Getting Started
+A collaborative, real-time "Post-it note" wall built for GDG community events. Attendees can leave colorful digital sticky notes to share thoughts, feedback, or greetings on a shared public canvas.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16-black) ![React](https://img.shields.io/badge/React-19-blue) ![Vercel Postgres](https://img.shields.io/badge/Vercel-Postgres-pink)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Interactive Canvas**: Drag and drop notes anywhere on the wall.
+- **Real-time Updates**: The wall auto-refreshes to show new notes from other users.
+- **Customization**: Notes have random rotations and vibrant sticky-note colors.
+- **Smart Placement**: New notes automatically find open spaces to avoid clutter.
+- **content Moderation**: Basic built-in profanity filter for public safety.
+- **Responsive**: Works on mobile for posting and large screens for display.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **UI library**: [React 19](https://react.dev/)
+- **Database**: [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)
+- **Styling**: CSS Modules (No Tailwind, pure custom styles)
+- **Deployment**: Vercel
 
-## Learn More
+## 🚀 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18+ installed.
+- A [Vercel](https://vercel.com) account (for the database).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1.  **Clone the repository**:
+    ```bash
+    git clone <repository-url>
+    cd gdg-wall
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3.  **Environment Setup**:
+    Create a `.env.local` file in the root directory. You need to connect a Vercel Postgres database to get the credentials.
+    
+    ```bash
+    # .env.local
+    POSTGRES_URL="postgres://default:..."
+    POSTGRES_PRISMA_URL="..."
+    POSTGRES_URL_NO_SSL="..."
+    POSTGRES_URL_NON_POOLING="..."
+    POSTGRES_USER="..."
+    POSTGRES_HOST="..."
+    POSTGRES_PASSWORD="..."
+    POSTGRES_DATABASE="..."
+    ```
+    *Tip: If deploying on Vercel, these are added automatically when you integrate the storage.*
+
+4.  **Initialize the Database**:
+    The project includes an automatic setup route. Once your environment variables are set, start the dev server and visit the setup endpoint once to create the necessary tables.
+    
+    Start server:
+    ```bash
+    npm run dev
+    ```
+    
+    **Visit in browser**: `http://localhost:3000/api/setup`
+    
+    You should see: `{"message":"Database initialized successfully"}`
+
+5.  **Run the App**:
+    Now go to the home page: `http://localhost:3000`
+
+## 📦 Deployment
+
+This application is optimized for **Vercel**.
+
+1.  Push your code to a Git repository (GitHub/GitLab/Bitbucket).
+2.  Import the project in your Vercel Dashboard.
+3.  In the Vercel Project Settings, navigate to the **Storage** tab and create a new **Postgres** database. Connect it to your project.
+4.  Deploy content.
+5.  **Important**: After the first deployment, verify the database tables are created by visiting `https://<your-project>.vercel.app/api/setup`.
+
+## 📂 Project Structure
+
+- `src/app/page.tsx`: Main UI logic (Wall + Composer).
+- `src/app/api/notes`: API endpoints for fetching and creating notes.
+- `src/components`: Reusable UI components (Wall, Note, Composer).
+- `src/lib`: Utility functions and types.
+
+## 🤝 Contributing
+
+Feel free to fork and submit PRs if you want to add features like better reaction emojis or admin moderation dashboards!
