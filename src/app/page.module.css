@@ -1,141 +1,129 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
-}
-
 .main {
-  display: flex;
   min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
-}
-
-.intro {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+  position: relative;
+  z-index: 1;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
+/* Header - Sticky note style with GDG branding */
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  padding: 1.5rem 2rem;
+  position: relative;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.headerNote {
+  background: var(--note-yellow);
+  padding: 1.25rem 2.5rem;
+  transform: rotate(-2deg);
+  box-shadow: var(--shadow-note);
+  position: relative;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+/* Tape effect */
+.headerNote::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+  width: 60px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 2px;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
+.brand {
+  text-align: center;
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
+.gdgLogo {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+.gdgLogo span {
+  padding: 0.15rem 0.3rem;
+  border-radius: 3px;
+}
+
+.gdgBlue {
+  background: #4285f4;
+  color: white;
+}
+
+.gdgRed {
+  background: #ea4335;
+  color: white;
+}
+
+.gdgYellow {
+  background: #fbbc04;
+  color: #333;
+}
+
+.gdgGreen {
+  background: #34a853;
+  color: white;
+}
+
+.title {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #333;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-family: var(--font-handwritten);
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+
+/* Stats badge */
+.stats {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.noteCount {
+  font-family: var(--font-handwritten);
+  font-size: 1.1rem;
+  padding: 0.6rem 1rem;
+  background: var(--note-pink);
+  color: #333;
+  transform: rotate(3deg);
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .stats {
+    position: static;
+    transform: none;
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .headerNote {
+    padding: 1rem 1.5rem;
   }
 }
