@@ -1,0 +1,242 @@
+/* FAB */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--note-yellow);
+    color: #222;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-handwritten);
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+    z-index: 100;
+    transform: rotate(2deg);
+}
+
+.fab:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 5px 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+.fabPlus {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+@media (max-width: 640px) {
+    .fab {
+        padding: 1rem;
+    }
+
+    .fabText {
+        display: none;
+    }
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 200;
+}
+
+/* Modal - changes color based on selected note color */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-1deg);
+    width: 90%;
+    max-width: 380px;
+    padding: 1.5rem;
+    box-shadow: 6px 8px 25px rgba(0, 0, 0, 0.35);
+    z-index: 201;
+    animation: popIn 0.25s ease-out;
+    transition: background 0.3s ease;
+}
+
+/* Color variants for modal */
+.modal.yellow {
+    background: linear-gradient(145deg, #fff740, #ffe066);
+}
+
+.modal.pink {
+    background: linear-gradient(145deg, #ff7eb9, #ff5ca0);
+}
+
+.modal.blue {
+    background: linear-gradient(145deg, #7afcff, #52d6dc);
+}
+
+.modal.green {
+    background: linear-gradient(145deg, #7aff83, #5be065);
+}
+
+.modal.orange {
+    background: linear-gradient(145deg, #ffa07a, #ff7f50);
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.85) rotate(-3deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(-1deg);
+    }
+}
+
+/* Tape effect */
+.modal::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(1deg);
+    width: 70px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.closeBtn {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.4);
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.closeBtn:hover {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.textarea {
+    width: 100%;
+    height: 120px;
+    padding: 0.75rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-handwritten);
+    font-size: 1.4rem;
+    line-height: 1.35;
+    resize: none;
+    color: #222;
+}
+
+.textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.textarea::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.colorPicker {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.colorBtn {
+    width: 28px;
+    height: 28px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.colorBtn:hover {
+    transform: scale(1.15);
+}
+
+.colorBtn.active {
+    border-color: #333;
+    transform: scale(1.2);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.pickyellow {
+    background: #fff740;
+}
+
+.pickpink {
+    background: #ff7eb9;
+}
+
+.pickblue {
+    background: #7afcff;
+}
+
+.pickgreen {
+    background: #7aff83;
+}
+
+.pickorange {
+    background: #ffa07a;
+}
+
+.charCount {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.error {
+    padding: 0.5rem;
+    background: rgba(220, 38, 38, 0.15);
+    font-family: var(--font-handwritten);
+    font-size: 1rem;
+    color: #b91c1c;
+    text-align: center;
+}
+
+.submitBtn {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-handwritten);
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.submitBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
